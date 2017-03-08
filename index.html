@@ -12,14 +12,24 @@
     
     <style>
       body {
-        overflow: hidden;
         margin: 0;
+        overflow: hidden;
         padding: 0;
         text-align: center;
       }
       .videoElement {
-        margin: 0;
         height: 100vh;
+        margin: 0;
+      }
+      .videoElement--background {
+        left: 0;
+        filter: blur(5px);
+        height: 100vh;
+        object-fit: cover;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 1;
       }
       .flipHorizontal {
         transform: rotateY(180deg);
@@ -28,7 +38,11 @@
   </head>
   <body>
     
+    <video autoplay="true" class="videoElement--background flipHorizontal"></video>
+    
     <video autoplay="true" class="videoElement flipHorizontal"></video>
+    
+    
     
     <script>
       navigator.getUserMedia = [
