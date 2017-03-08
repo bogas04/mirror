@@ -53,7 +53,7 @@
         navigator.mediaDevices && navigator.mediaDevices.getUserMedia,
       ].find(api => api);
 
-      const $videos = document.querySelectorAll(".videoElement");
+      const $videos = document.querySelectorAll("video");
 
       function handleVideo(stream) {
         [...$videos]
