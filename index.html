@@ -1,9 +1,15 @@
 <!doctype html>
 <html>
   <head>
+    
     <title>Mirror</title>
+    
     <link rel="icon" href="logo.png" type="image/png" />
+    
+    <link rel="manifest" href="manifest.json"> 
+    
     <meta charset="utf-8" />
+    
     <style>
       body {
         overflow: hidden;
@@ -21,22 +27,33 @@
     </style>
   </head>
   <body>
+    
     <video autoplay="true" class="videoElement flipHorizontal"></video>
     
     <script>
-      var video = document.querySelectorAll(".videoElement");
+      navigator.getUserMedia = [
+        navigator.getUserMedia,
+        navigator.webkitGetUserMedia,
+        navigator.mozGetUserMedia,
+        navigator.msGetUserMedia,
+        navigator.oGetUserMedia,
+      ].find(api => api);
 
-      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+      const $videos = document.querySelectorAll(".videoElement");
 
-      if (navigator.getUserMedia) { 
-        navigator.getUserMedia({video: true}, handleVideo, videoError);
-      } else {
-        videoError();      
+      function handleVideo(stream) {
+        [...$videos]
+          .forEach(video => video.src = window.URL.createObjectURL(stream));
       }
-
-      function handleVideo(stream) { [...video].forEach(video => video.src = window.URL.createObjectURL(stream)); }
-      function videoError(e) { document.write(`You have not granted permission to use webcam/don't have one.`); }
-
+      
+      function videoError(e) {
+        document.body.innerText = `You have not granted permission to use webcam or you don't have one.`);
+      }
+      
+      navigator.getUserMedia
+        ? navigator.getUserMedia({ video: true }, handleVideo, videoError)
+        : videoError()
+      ;
     </script>
   </body>
 </html>
