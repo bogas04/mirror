@@ -37,6 +37,7 @@
         navigator.mozGetUserMedia,
         navigator.msGetUserMedia,
         navigator.oGetUserMedia,
+        navigator.mediaDevices && navigator.mediaDevices.getUserMedia,
       ].find(api => api);
 
       const $videos = document.querySelectorAll(".videoElement");
