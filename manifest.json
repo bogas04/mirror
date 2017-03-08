@@ -1,0 +1,13 @@
+{
+  "background_color": "#7cb8fb",
+  "name": "Mirror",
+  "short_name": "Mirror",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ]
+}
