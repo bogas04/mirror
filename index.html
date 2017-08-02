@@ -70,6 +70,13 @@
         ? navigator.getUserMedia({ video: true }, handleVideo, videoError)
         : videoError()
       ;
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('sw.js', { scope: './' })
+          .then(reg => console.log('Registration succeeded. Scope is ' + reg.scope))
+          .catch(error => console.error('Registration failed with ' + error));
+      }
     </script>
   </body>
 </html>
