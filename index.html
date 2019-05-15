@@ -59,7 +59,7 @@
 
       function handleVideo(stream) {
         [...$videos]
-          .forEach(video => video.src = window.URL.createObjectURL(stream));
+          .forEach(video => video.srcObject = stream);
       }
       
       function videoError(e) {
