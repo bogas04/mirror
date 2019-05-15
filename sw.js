@@ -5,7 +5,7 @@ const onCache = cache => cache.addAll([
 
 this.addEventListener('install', e => e.waitUntil(
   caches
-    .open('v1')
+    .open('v2')
     .then(onCache)
 ));
 
